@@ -1,24 +1,5 @@
 import db from "@/src/lib/db";
-
-async function getAllProducts()
-{
-  const res = await fetch("http://localhost:3000/api/products", {
-    cache: "no-store"
-  })
-
-  const products = await res.json()
-  return (
-    <div>
-      <h1 className="text-4xl font-bold mb-8 font-[family-name:var(--font-geist-sans)] text-[#333333]" >Products</h1>
-      {products.map((product: any) => (
-          <li key={product.id} className="mb-2 text-[#333333]">
-            {product.name}
-            {product.price}
-          </li>
-        ))}
-    </div>
-  );
-}
+import Link from "next/link"
 
 export default async function Home() 
 {
@@ -35,7 +16,6 @@ export default async function Home()
           </li>
         ))}
       </ol>
-      { getAllProducts() }
     </div>
   );
 }

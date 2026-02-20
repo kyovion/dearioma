@@ -29,24 +29,3 @@ export async function POST(req: Request)
   }
     
 }
-
-export async function UPDATE(req: Request, { params }: { params: { id: string } })
-{
-  const body = await req.json()
-
-  const product = await db.product.update({
-    where: { id: params.id },
-    data: body
-  })
-
-  return NextResponse.json(product)
-}
-
-export async function DELETE(req: Request, { params }: { params: { id: string } }) 
-{
-  await db.product.delete({
-    where: { id: params.id }
-  })
-
-  return NextResponse.json({ success: true })
-}
