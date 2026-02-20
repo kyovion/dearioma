@@ -27,6 +27,7 @@ model Product {
   name      String
   price     Int
   stock     Int
+  category  String
   image     String?
   createdAt DateTime @default(now())
   items     OrderItem[]

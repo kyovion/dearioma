@@ -15,6 +15,7 @@ CREATE TABLE "Product" (
     "name" TEXT NOT NULL,
     "price" INTEGER NOT NULL,
     "stock" INTEGER NOT NULL,
+    "category" TEXT NOT NULL,
     "image" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
