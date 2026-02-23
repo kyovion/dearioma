@@ -21,7 +21,7 @@ export default async function Home()
       <h1 className="text-4xl font-bold mb-8 font-[family-name:var(--font-geist-sans)] text-[#333333]" >Products</h1>
         {products.map((product: any) => (
           <li key={product.id} className="mb-2 text-[#333333]">
-              {product.name +" | "+ product.price + " | "}
+              {product.name +" | "+ product.price + " | " + product.stock + " | " }
               {/* {product.price} */}
               <Link href={`/admin/products/${product.id}/edit`}>Edit</Link>
             </li>

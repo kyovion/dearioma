@@ -63,7 +63,7 @@ export default function EditProductPage() {
     router.push("/admin/products")
   }
 
-  // if (loading) return <p>Loading...</p>
+  if (loading) return <p>Loading...</p>
 
   return (
     <div>
@@ -88,7 +88,7 @@ export default function EditProductPage() {
         <input
           name="stock"
           type="number"
-          value={form.price}
+          value={form.stock}
           onChange={handleChange}
           placeholder="Stok"
         />
@@ -107,7 +107,7 @@ export default function EditProductPage() {
           placeholder="Gambar"
         />
 
-        <button type="submit">Update</button>
+        <button type="submit" className="btn-cursor">Update</button>
       </form>
     </div>
   )

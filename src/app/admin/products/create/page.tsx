@@ -1,7 +1,9 @@
 "use client"
 import { useState } from "react"
+import { useParams, useRouter } from "next/navigation"
 
 export default function CreateProduct() {
+  const router = useRouter()
   const [name, setName] = useState("")
   const [price, setPrice] = useState(0)
   const [stock, setStock] = useState(1)
@@ -30,6 +32,7 @@ export default function CreateProduct() {
     console.log("fetch dulu")
     const data = await res.json()
     console.log(data)
+    router.push("/admin/products")
   }
 
   return (
@@ -72,7 +75,7 @@ export default function CreateProduct() {
           onChange={e => setImage(e.target.value)}
           />
       </div>
-      <button className="text-black bg-yellow-500" type="submit">Create</button>
+      <button className="text-black bg-yellow-500 btn-cursor" type="submit">Create</button>
     </form>
     </div>
   )
