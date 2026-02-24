@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
+// import buttonStyles from '../../../../../styles/buttonStyles.module.css'
+import buttonStyles from '@/src/styles/buttonStyles.module.css'
 
 export default function EditProductPage() {
   const { id } = useParams()
@@ -107,7 +109,7 @@ export default function EditProductPage() {
           placeholder="Gambar"
         />
 
-        <button type="submit" className="btn-cursor">Update</button>
+        <button type="submit" className={buttonStyles.btnCursor} >Update</button>
       </form>
     </div>
   )
