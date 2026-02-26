@@ -1,12 +1,13 @@
 import db from "@/src/lib/db";
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
 export async function GET() {
   const products = await db.product.findMany()
   return NextResponse.json(products)
 }
 
-export async function POST(req: Request) 
+// export async function POST(req: Request) 
+export async function POST(req: NextRequest) 
 {
     try{
         console.log("test 1");
@@ -25,7 +26,7 @@ export async function POST(req: Request)
         return NextResponse.json(product)
     }catch (error) {
         console.log("ERROR:", error)
-    return Response.json({ error: "server error" }, { status: 500 })
+    return NextResponse.json({ error: "server error" }, { status: 500 })
   }
     
 }

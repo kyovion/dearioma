@@ -1,0 +1,32 @@
+'use client'
+
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import buttonStyles from '@/src/styles/buttonStyles.module.css'
+
+export default function ProductList({ product }: any)
+{
+    const router = useRouter()
+    const handleDelete = async (id:number) => {
+        const confirmDelete = confirm("Yakin hapus?")
+
+        if (!confirmDelete) return
+
+        await fetch(`/api/products/${id}`, {
+        method: "DELETE"
+        })
+
+        router.refresh()
+    }
+    
+    return(
+    <>
+        <li key={product.id} className="mb-2 text-[#333333]">
+            {product.name +" | "+ product.price + " | " + product.stock + " | " }
+            <Link href={`/admin/products/${product.id}/edit`}>Edit</Link>
+            {" | "}
+            <button className={buttonStyles.btnCursor} onClick={() => handleDelete(product.id)}>Delete</button>
+        </li>
+    </>
+    )
+}

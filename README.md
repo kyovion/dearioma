@@ -39,4 +39,4 @@ https://www.prisma.io/docs/guides/frameworks/nextjs
 first time run need add dlx
 pnpm dlx prisma migrate dev --name init
 pnpm dlx prisma generate
-
+pnpm prisma studio for checking db diagram
