@@ -9,13 +9,11 @@ export default function EditProductPage() {
   const { id } = useParams()
   const router = useRouter()
 
-  const [form, setForm] = useState({
-    name: "",
-    price: 0,
-    stock: 0,
-    category: "",
-    image: ""
-  })
+  const [name, setName] = useState("")
+  const [price, setPrice] = useState(0)
+  const [stock, setStock] = useState(1)
+  const [category, setCategory] = useState("")
+  const [image, setImage] = useState("")
 
   const [loading, setLoading] = useState(true)
 
@@ -27,29 +25,18 @@ export default function EditProductPage() {
 
       console.log("check fetch")
       console.log(res)
-
-      setForm({
-        name: data.name || "",
-        price: data.price || 0,
-        stock: data.stock || 0,
-        category: data.category || "",
-        image: data.image || "",
-      })
+     
+        setName(data.name || "")
+        setPrice(data.price || 0)
+        setStock(data.stock || 0)
+        setCategory(data.category || "")
+        setImage(data.image || "")
 
       setLoading(false)
     }
 
     if (id) fetchProduct()
   }, [id])
-
-  // ⭐ handler input change
-  const handleChange = (e: any) => {
-    const { name, value } = e.target
-    setForm(prev => ({
-      ...prev,
-      [name]: name === "price" ? Number(value) : value
-    }))
-  }
 
   // ⭐ handler submit update
   const handleSubmit = async (e: any) => {
@@ -58,7 +45,13 @@ export default function EditProductPage() {
     await fetch(`/api/products/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form)
+      body: JSON.stringify({
+        name,
+        price,
+        stock,
+        category,
+        image
+      })
     })
 
     alert("Produk berhasil diupdate")
@@ -71,46 +64,56 @@ export default function EditProductPage() {
     <div>
       <h1>Edit Product</h1>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          name="name"
-          value={form.name}
-          onChange={handleChange}
-          placeholder="Nama produk"
+      <form onSubmit={handleSubmit} className="bg-white">
+      <div className="text-black">
+      Nama : 
+      <input
+        name="name"
+        value={name}
+        placeholder="name"
+        onChange={e => setName(e.target.value)}
         />
-
+      </div>
+      <div className="text-black">
+        Harga: 
         <input
           name="price"
+          value={price}
+          placeholder="price"
           type="number"
-          value={form.price}
-          onChange={handleChange}
-          placeholder="Harga"
-        />
-
+          onChange={e => setPrice(Number(e.target.value))}
+          />
+      </div>
+      <div className="text-black">
+        Stock:
         <input
           name="stock"
+          value={stock}
+          placeholder="stock"
           type="number"
-          value={form.stock}
-          onChange={handleChange}
-          placeholder="Stok"
+          onChange={e => setStock(Number(e.target.value))}
         />
-
-        <textarea
+      </div>
+      <div className="text-black">
+        Kategori:
+        <input
           name="category"
-          value={form.category}
-          onChange={handleChange}
-          placeholder="Kategori"
-        />
-
-        <textarea
+          value={category}
+          placeholder="category"
+          onChange={e => setCategory(e.target.value)}
+          />
+      </div>
+      <div className="text-black">
+        Gambar:
+        <input
           name="image"
-          value={form.image}
-          onChange={handleChange}
-          placeholder="Gambar"
-        />
-
-        <button type="submit" className={buttonStyles.btnCursor} >Update</button>
-      </form>
+          value={image}
+          placeholder="image"
+          onChange={e => setImage(e.target.value)}
+          />
+      </div>
+      <button className="text-black bg-yellow-500 btn-cursor" type="submit">Update</button>
+    </form>
     </div>
   )
 }

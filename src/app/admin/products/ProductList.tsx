@@ -22,7 +22,7 @@ export default function ProductList({ product }: any)
     return(
     <>
         <li key={product.id} className="mb-2 text-[#333333]">
-            {product.name +" | "+ product.price + " | " + product.stock + " | " }
+            {product.name +" | "+ product.price + " | " + product.stock + " | " + product.category + " | " + product.image + " | " }
             <Link href={`/admin/products/${product.id}/edit`}>Edit</Link>
             {" | "}
             <button className={buttonStyles.btnCursor} onClick={() => handleDelete(product.id)}>Delete</button>

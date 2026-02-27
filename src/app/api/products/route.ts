@@ -10,9 +10,7 @@ export async function GET() {
 export async function POST(req: NextRequest) 
 {
     try{
-        console.log("test 1");
         const body = await req.json()
-        console.log("test "+ body);
         const product = await db.product.create({
             data: {
             name: body.name,

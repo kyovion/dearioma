@@ -37,6 +37,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 https://www.prisma.io/docs/guides/frameworks/nextjs
 first time run need add dlx
-pnpm dlx prisma migrate dev --name init
+pnpm dlx prisma migrate dev --name xxx
 pnpm dlx prisma generate
+pnpm prisma migrate dev --name xxx
+pnpm prisma generate
 pnpm prisma studio for checking db diagram
