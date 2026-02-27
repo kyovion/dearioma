@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react"
 import { useParams, useRouter } from "next/navigation"
+import buttonStyles from '@/src/styles/buttonStyles.module.css'
 
 export default function CreateProduct() {
   const router = useRouter()
@@ -29,9 +30,6 @@ export default function CreateProduct() {
       })
     })
     
-    console.log("fetch dulu")
-    const data = await res.json()
-    console.log(data)
     router.push("/admin/products")
   }
 
@@ -75,7 +73,7 @@ export default function CreateProduct() {
           onChange={e => setImage(e.target.value)}
           />
       </div>
-      <button className="text-black bg-yellow-500 btn-cursor" type="submit">Create</button>
+      <button className={buttonStyles.btnCursor} type="submit">Create</button>
     </form>
     </div>
   )

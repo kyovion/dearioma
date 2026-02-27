@@ -1,3 +1,5 @@
 .btnCursor {
   cursor: pointer;
+  background: yellow;
+  color: red;
 }

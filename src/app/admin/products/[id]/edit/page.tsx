@@ -23,9 +23,6 @@ export default function EditProductPage() {
       const res = await fetch(`/api/products/${id}`)
       const data = await res.json()
 
-      console.log("check fetch")
-      console.log(res)
-     
         setName(data.name || "")
         setPrice(data.price || 0)
         setStock(data.stock || 0)
@@ -112,7 +109,7 @@ export default function EditProductPage() {
           onChange={e => setImage(e.target.value)}
           />
       </div>
-      <button className="text-black bg-yellow-500 btn-cursor" type="submit">Update</button>
+      <button className={buttonStyles.btnCursor} type="submit">Update</button>
     </form>
     </div>
   )

@@ -7,6 +7,9 @@ import buttonStyles from '@/src/styles/buttonStyles.module.css'
 export default function ProductList({ product }: any)
 {
     const router = useRouter()
+    const handleEdit = async (id:number) => {
+        router.push(`/admin/products/${id}/edit`)
+    }
     const handleDelete = async (id:number) => {
         const confirmDelete = confirm("Yakin hapus?")
 
@@ -23,7 +26,7 @@ export default function ProductList({ product }: any)
     <>
         <li key={product.id} className="mb-2 text-[#333333]">
             {product.name +" | "+ product.price + " | " + product.stock + " | " + product.category + " | " + product.image + " | " }
-            <Link href={`/admin/products/${product.id}/edit`}>Edit</Link>
+            <button className={buttonStyles.btnCursor} onClick={() => handleEdit(product.id)}>Edit</button>
             {" | "}
             <button className={buttonStyles.btnCursor} onClick={() => handleDelete(product.id)}>Delete</button>
         </li>

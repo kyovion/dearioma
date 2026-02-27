@@ -1,9 +1,7 @@
-import db from "@/src/lib/db";
 import ProductList from "./ProductList";
 
 export default async function Home() 
 {
-  const users = await db.user.findMany();
   const res = await fetch("http://localhost:3000/api/products", {
     cache: "no-store"
   })
