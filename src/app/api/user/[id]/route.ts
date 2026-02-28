@@ -39,7 +39,7 @@ export async function DELETE(req: NextRequest, context: { params: Promise<{ id: 
 {
   const { id } = await context.params
 
-  await db.product.delete({
+  await db.user.delete({
     where: { id }
   })
 

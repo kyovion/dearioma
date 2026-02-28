@@ -2,7 +2,7 @@ import db from "@/src/lib/db";
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET() {
-  const products = await db.product.findMany()
+  const products = await db.user.findMany()
   return NextResponse.json(products)
 }
 
@@ -11,13 +11,14 @@ export async function POST(req: NextRequest)
 {
     try{
         const body = await req.json()
-        const product = await db.product.create({
+        const product = await db.user.create({
             data: {
-            name: body.name,
-            price: body.price,
-            category: body.name,
-            stock: body.stock,
-            image: body.image
+            username: body.username,
+            email: body.email,
+            password: body.password,
+            address: body.address,
+            phonenumber: body.phonenumber,
+            // role: "ADMIN"
             }
         })
 

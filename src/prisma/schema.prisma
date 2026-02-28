@@ -26,14 +26,15 @@ model User {
 }
 
 model Product {
-  id        String   @id @default(cuid())
-  name      String
-  price     Int
-  stock     Int
-  category  String
-  image     String?
-  createdAt DateTime @default(now())
-  items     OrderItem[]
+  id          String   @id @default(cuid())
+  name        String
+  price       Int
+  stock       Int
+  category    String
+  description String
+  image       String?
+  createdAt   DateTime @default(now())
+  items       OrderItem[]
 }
 
 model Order {

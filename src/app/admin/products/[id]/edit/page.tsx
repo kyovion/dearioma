@@ -13,6 +13,7 @@ export default function EditProductPage() {
   const [price, setPrice] = useState(0)
   const [stock, setStock] = useState(1)
   const [category, setCategory] = useState("")
+  const [description, setDescription] = useState("")
   const [image, setImage] = useState("")
 
   const [loading, setLoading] = useState(true)
@@ -27,6 +28,7 @@ export default function EditProductPage() {
         setPrice(data.price || 0)
         setStock(data.stock || 0)
         setCategory(data.category || "")
+        setDescription(data.description || "")
         setImage(data.image || "")
 
       setLoading(false)
@@ -47,6 +49,7 @@ export default function EditProductPage() {
         price,
         stock,
         category,
+        description,
         image
       })
     })
@@ -63,20 +66,20 @@ export default function EditProductPage() {
 
       <form onSubmit={handleSubmit} className="bg-white">
       <div className="text-black">
-      Nama : 
+      Product Name : 
       <input
         name="name"
         value={name}
-        placeholder="name"
+        placeholder="Product Name"
         onChange={e => setName(e.target.value)}
         />
       </div>
       <div className="text-black">
-        Harga: 
+        Price: 
         <input
           name="price"
           value={price}
-          placeholder="price"
+          placeholder="Price"
           type="number"
           onChange={e => setPrice(Number(e.target.value))}
           />
@@ -86,26 +89,35 @@ export default function EditProductPage() {
         <input
           name="stock"
           value={stock}
-          placeholder="stock"
+          placeholder="Stock"
           type="number"
           onChange={e => setStock(Number(e.target.value))}
         />
       </div>
       <div className="text-black">
-        Kategori:
+        Category:
         <input
           name="category"
           value={category}
-          placeholder="category"
+          placeholder="Category"
           onChange={e => setCategory(e.target.value)}
           />
       </div>
       <div className="text-black">
-        Gambar:
+        Description:
+        <input
+          name="description"
+          value={description}
+          placeholder="Description"
+          onChange={e => setDescription(e.target.value)}
+          />
+      </div>
+      <div className="text-black">
+        Image:
         <input
           name="image"
           value={image}
-          placeholder="image"
+          placeholder="Image"
           onChange={e => setImage(e.target.value)}
           />
       </div>

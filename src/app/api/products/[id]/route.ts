@@ -28,6 +28,7 @@ export async function PUT( req: NextRequest, context: { params: Promise<{ id: st
       price: body.price,
       stock: body.stock,
       category: body.category,
+      description: body.description,
       image: body.image,
     }
   })

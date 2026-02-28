@@ -1,4 +1,6 @@
 import db from "@/src/lib/db";
+import buttonStyles from '@/src/styles/buttonStyles.module.css'
+import Link from "next/link";
 
 export default async function Home() 
 {
@@ -28,6 +30,8 @@ export default async function Home()
         {users.map((user) => (
           <li key={user.id} className="mb-2">
             {user.email}
+            <> | </>
+            <Link href={`/user/${user.id}/profile`}>Show Profile</Link>
           </li>
         ))}
       </ol>

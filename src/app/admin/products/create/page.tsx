@@ -9,6 +9,7 @@ export default function CreateProduct() {
   const [price, setPrice] = useState(0)
   const [stock, setStock] = useState(1)
   const [category, setCategory] = useState("")
+  const [description, setDescription] = useState("")
   const [image, setImage] = useState("")
 
   async function handleSubmit(e: any) {
@@ -26,6 +27,7 @@ export default function CreateProduct() {
         price,
         stock,
         category,
+        description,
         image
       })
     })
@@ -37,16 +39,20 @@ export default function CreateProduct() {
     <div className="bg-red">
       <form onSubmit={handleSubmit} className="bg-white">
       <div className="text-black">
-      Nama : 
+      Product Name : 
       <input
-        placeholder="name"
+        name="name"
+        value={name}
+        placeholder="Product Name"
         onChange={e => setName(e.target.value)}
         />
       </div>
       <div className="text-black">
-        Harga: 
+        Price: 
         <input
-          placeholder="price"
+          name="price"
+          value={price}
+          placeholder="Price"
           type="number"
           onChange={e => setPrice(Number(e.target.value))}
           />
@@ -54,22 +60,37 @@ export default function CreateProduct() {
       <div className="text-black">
         Stock:
         <input
-          placeholder="stock"
+          name="stock"
+          value={stock}
+          placeholder="Stock"
           type="number"
           onChange={e => setStock(Number(e.target.value))}
         />
       </div>
       <div className="text-black">
-        Kategori:
+        Category:
         <input
-          placeholder="category"
+          name="category"
+          value={category}
+          placeholder="Category"
           onChange={e => setCategory(e.target.value)}
           />
       </div>
       <div className="text-black">
-        Gambar:
+        Description:
         <input
-          placeholder="image"
+          name="description"
+          value={description}
+          placeholder="Description"
+          onChange={e => setDescription(e.target.value)}
+          />
+      </div>
+      <div className="text-black">
+        Image:
+        <input
+          name="image"
+          value={image}
+          placeholder="Image"
           onChange={e => setImage(e.target.value)}
           />
       </div>

@@ -16,6 +16,7 @@ export async function POST(req: NextRequest)
             name: body.name,
             price: body.price,
             category: body.name,
+            description: body.description,
             stock: body.stock,
             image: body.image
             }

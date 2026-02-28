@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
-import Link from "next/link"
 import buttonStyles from '@/src/styles/buttonStyles.module.css'
 
 export default function UserProfilePage() {
@@ -16,17 +15,18 @@ export default function UserProfilePage() {
   const [loading, setLoading] = useState(true)
 
   const router = useRouter()
-  const handleDelete = async (id:number) => {
-      const confirmDelete = confirm("Yakin hapus?")
+  const handleDelete = async () => {
+      const confirmDelete = confirm("Yakin hapus akun anda?")
 
       if (!confirmDelete) return
 
-      await fetch(`/api/products/${id}`, {
+      await fetch(`/api/user/${id}`, {
       method: "DELETE"
       })
 
-      router.refresh()
+      router.push(`/admin`)
   }
+
   const handleUpdate = async () => {
       router.push(`/user/${id}/update`)
   }
@@ -69,6 +69,9 @@ export default function UserProfilePage() {
         </div>
         <div className="w-1/8 border-2">
           <button className={buttonStyles.btnCursor} onClick={() => handleUpdate()}>Update Profile</button>
+        </div>
+        <div className="w-1/8 border-2">
+          <button className={buttonStyles.btnCursor} onClick={() => handleDelete()}>Delete Profile</button>
         </div>
       </div>
 

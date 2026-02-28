@@ -1,6 +1,5 @@
 'use client'
 
-import Link from "next/link"
 import { useRouter } from "next/navigation"
 import buttonStyles from '@/src/styles/buttonStyles.module.css'
 
@@ -25,7 +24,7 @@ export default function ProductList({ product }: any)
     return(
     <>
         <li key={product.id} className="mb-2 text-[#333333]">
-            {product.name +" | "+ product.price + " | " + product.stock + " | " + product.category + " | " + product.image + " | " }
+            {product.name +" | "+ product.price + " | " + product.stock + " | " + product.category + " | " + product.description + " | " + product.image + " | " }
             <button className={buttonStyles.btnCursor} onClick={() => handleEdit(product.id)}>Edit</button>
             {" | "}
             <button className={buttonStyles.btnCursor} onClick={() => handleDelete(product.id)}>Delete</button>

@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 import buttonStyles from '@/src/styles/buttonStyles.module.css'
 
-export default function CreateProduct() {
+export default function CreateUser() {
   const router = useRouter()
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
@@ -16,7 +16,7 @@ export default function CreateProduct() {
     
     alert("submit");
 
-    const res = await fetch("/api/admin", {
+    const res = await fetch("/api/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
