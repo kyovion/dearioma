@@ -7,7 +7,7 @@ export default async function Home()
   const admins = await db.user.findMany({where: { role: "ADMIN" },});
   const users = await db.user.findMany({where: { role: "USER" },});
 
-  const res = await fetch("http://localhost:3000/api/products", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
     cache: "no-store"
   })
 
