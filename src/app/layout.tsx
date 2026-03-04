@@ -27,7 +27,8 @@ export default function RootLayout({ children }: Readonly<{children: React.React
       >
         <div>Headerrr</div>
         <div className="mb-5 flex">
-          <div className="mr-2 border-2"><Link href={"/admin"}>Home</Link></div>
+          <div className="mr-2 border-2"><Link href={"/"}>Home</Link></div>
+          <div className="mr-2 border-2"><Link href={"/admin"}>Home Admin</Link></div>
           <div className="mr-2 border-2"><Link href={"/admin/products"}>Product</Link></div>
           <div className="mr-2 border-2"><Link href={"/admin/products/create"}>Create Product</Link></div>
           <div className="mr-2 border-2"><Link href={"/user/register"}>Register</Link></div>
