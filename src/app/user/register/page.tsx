@@ -30,7 +30,7 @@ export default function CreateUser() {
       })
     })
     
-    router.push("/admin")
+    router.push("/user")
   }
 
   return (

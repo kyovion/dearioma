@@ -22,17 +22,10 @@ export default function RootLayout({ children }: Readonly<{children: React.React
 {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
         <div>Headerrr</div>
-        <div className="mb-5 flex">
-          <div className="mr-2 border-2"><Link href={"/"}>Home</Link></div>
-          <div className="mr-2 border-2"><Link href={"/admin"}>Home Admin</Link></div>
-          <div className="mr-2 border-2"><Link href={"/admin/products"}>Product</Link></div>
-          <div className="mr-2 border-2"><Link href={"/admin/products/create"}>Create Product</Link></div>
-          <div className="mr-2 border-2"><Link href={"/user/register"}>Register</Link></div>
-        </div>
+        <div className="mr-2 border-2"><Link href={"/admin/login"}>Home Admin</Link></div>
+        <div className="mr-2 border-2"><Link href={"/user/login"}>Home User</Link></div>
         {children}
         <div>Foootteeerrr</div>
       </body>

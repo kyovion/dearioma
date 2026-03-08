@@ -1,4 +1,6 @@
+import { verifyToken } from "@/src/lib/auth";
 import db from "@/src/lib/db";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET() {
@@ -9,6 +11,26 @@ export async function GET() {
 // export async function POST(req: Request) 
 export async function POST(req: NextRequest) 
 {
+
+    const cookieStore = await cookies()
+    const token = cookieStore.get("token")?.value
+
+    const decoded = verifyToken(token)
+
+    if (!decoded) {
+        return Response.json(
+        { message: "Unauthorized" },
+        { status: 401 }
+        )
+    }
+
+    if (decoded?.role !== "ADMIN") {
+        return Response.json(
+            { message: "Forbidden" },
+            { status: 403 }
+        )
+    }
+
     try{
         const body = await req.json()
         const product = await db.product.create({

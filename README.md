@@ -42,3 +42,6 @@ pnpm dlx prisma generate
 pnpm prisma migrate dev --name xxx
 pnpm prisma generate
 pnpm prisma studio for checking db diagram
+
+pnpm install jsonwebtoken
+pnpm install -D @types/jsonwebtoken

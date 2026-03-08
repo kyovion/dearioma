@@ -1,5 +1,4 @@
 import db from "@/src/lib/db";
-import buttonStyles from '@/src/styles/buttonStyles.module.css'
 import Link from "next/link";
 
 export default async function Home() 
