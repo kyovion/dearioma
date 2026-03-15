@@ -15,8 +15,6 @@ export default function CreateProduct() {
   async function handleSubmit(e: any) {
     e.preventDefault()
     
-    alert("submit");
-
     const res = await fetch("/api/products", {
       method: "POST",
       headers: {

@@ -38,7 +38,7 @@ export default function LoginPage() {
       }
     }
     else{
-      alert("Akun yang anda masukkan salahaaa")
+      alert("Akun yang anda masukkan salah")
     }
   }
 

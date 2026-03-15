@@ -14,8 +14,6 @@ export default function CreateUser() {
   async function handleSubmit(e: any) {
     e.preventDefault()
     
-    alert("submit");
-
     const res = await fetch("/api/user", {
       method: "POST",
       headers: {

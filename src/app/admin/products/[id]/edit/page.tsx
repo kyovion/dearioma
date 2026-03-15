@@ -54,7 +54,6 @@ export default function EditProductPage() {
       })
     })
 
-    alert("Produk berhasil diupdate")
     router.push("/admin/products")
   }
 

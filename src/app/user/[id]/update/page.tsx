@@ -51,7 +51,6 @@ export default function UserUpdatePage() {
       })
     })
 
-    alert("User Profile Berhasil Diupdate "+`${id}`)
     router.push(`/user/${id}/profile`)
   }
 
