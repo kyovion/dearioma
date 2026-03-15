@@ -12,7 +12,6 @@ export default function LogoutButton() {
     })
 
     if(res.ok){
-      console.log("ok")
       router.push("/user/login")
       router.refresh()
     }

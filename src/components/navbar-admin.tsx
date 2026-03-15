@@ -1,0 +1,24 @@
+import LogoutButton from "@/src/components/LogoutButton"
+import { getCurrentUser } from "@/src/lib/getCurrentUser"
+import Link from "next/link"
+
+export const dynamic = "force-dynamic"
+
+export default async function Navbar() {
+
+  const user = await getCurrentUser()
+
+  return (
+    <>
+      {user && (<div><h1> Welcome {user.email}</h1></div>)}
+      <div className="mb-5 flex">
+        <div className="mr-2 border-2"><Link href={"/admin"}>Home Admin</Link></div>
+        <div className="mr-2 border-2"><Link href={"/admin/products"}>Product</Link></div>
+        <div className="mr-2 border-2"><Link href={"/admin/products/create"}>Create Product</Link></div>
+        <div className="mr-2 border-2"><Link href={"/user/register"}>Register</Link></div>
+        <div className="mr-2 border-2"><Link href={"/user/login"}>Login</Link></div>
+        <LogoutButton />
+      </div>
+    </>
+  )
+}

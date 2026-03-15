@@ -1,5 +1,6 @@
 // import { verifyToken } from "@/src/lib/auth";
 import db from "@/src/lib/db";
+import { getCurrentUser } from "@/src/lib/getCurrentUser";
 import { requireAdmin } from "@/src/lib/requireAdmin";
 // import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server"
@@ -13,7 +14,21 @@ export async function GET() {
 export async function POST(req: NextRequest) 
 {
 
-    await requireAdmin()
+    const user = await getCurrentUser()
+
+    if (!user) {
+        return Response.json(
+            { message: "Unauthorized" },
+            { status: 401 }
+        )
+    }
+
+    if (user.role !== "ADMIN") {
+        return Response.json(
+            { message: "Forbidden" },
+            { status: 403 }
+        )
+    }
 
     try{
         const body = await req.json()

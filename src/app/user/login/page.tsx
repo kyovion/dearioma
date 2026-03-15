@@ -26,11 +26,15 @@ export default function LoginPage() {
     if(res.ok){
       if(data.role === "ADMIN")
       {
-        router.push("/admin")
+        // router.push("/admin")
+        // router.refresh()
+        window.location.href = "/admin"
       }
       else
-      {
-        router.push("/user")
+        {
+          // router.push("/user")
+          // router.refresh()
+          window.location.href = "/user"
       }
     }
     else{

@@ -1,25 +1,18 @@
 import { cookies } from "next/headers"
 import { verifyToken } from "@/src/lib/auth"
+import { getCurrentUser } from "./getCurrentUser"
 
 export async function requireAdmin() {
 
-  const cookieStore = await cookies()
+  const user = await getCurrentUser()
 
-  const token = cookieStore.get("token")?.value
-
-  if (!token) {
+  if (!user) {
     throw new Error("Unauthorized")
   }
 
-  const decoded: any = verifyToken(token)
-
-  if (!decoded) {
-    throw new Error("Unauthorized")
-  }
-
-  if (decoded.role !== "ADMIN") {
+  if (user.role !== "ADMMIN") {
     throw new Error("Forbidden")
   }
 
-  return decoded
+  return user
 }

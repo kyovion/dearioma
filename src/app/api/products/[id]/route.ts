@@ -1,4 +1,5 @@
 import db from "@/src/lib/db";
+import { getCurrentUser } from "@/src/lib/getCurrentUser";
 import { requireAdmin } from "@/src/lib/requireAdmin";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -19,7 +20,21 @@ export async function GET( req: NextRequest, context: { params: Promise<{ id: st
 
 export async function PUT( req: NextRequest, context: { params: Promise<{ id: string }> }) 
 {
-  await requireAdmin()
+  const user = await getCurrentUser()
+
+  if (!user) {
+    return Response.json(
+      { message: "Unauthorized" },
+      { status: 401 }
+    )
+  }
+
+  if (user.role !== "ADMIN") {
+    return Response.json(
+      { message: "Forbidden" },
+      { status: 403 }
+    )
+  }
   
   const { id } = await context.params
   const body = await req.json()
@@ -41,7 +56,22 @@ export async function PUT( req: NextRequest, context: { params: Promise<{ id: st
 
 export async function DELETE(req: NextRequest, context: { params: Promise<{ id: string }> }) 
 {
-  await requireAdmin()
+  const user = await getCurrentUser()
+
+  if (!user) {
+    return Response.json(
+      { message: "Unauthorized" },
+      { status: 401 }
+    )
+  }
+
+  if (user.role !== "admin") {
+    return Response.json(
+      { message: "Forbidden" },
+      { status: 403 }
+    )
+  }
+  
   const { id } = await context.params
 
   await db.product.delete({

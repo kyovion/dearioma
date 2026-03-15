@@ -1,18 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "@/src/app/globals.css";
-import Link from "next/link";
-import LogoutButton from "@/src/components/LogoutButton";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Navbar from "@/src/components/navbar-admin"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,14 +11,7 @@ export default function AdminLayout({ children }: Readonly<{children: React.Reac
 {
   return (
     <>
-      <div className="mb-5 flex">
-        <div className="mr-2 border-2"><Link href={"/admin"}>Home Admin</Link></div>
-        <div className="mr-2 border-2"><Link href={"/admin/products"}>Product</Link></div>
-        <div className="mr-2 border-2"><Link href={"/admin/products/create"}>Create Product</Link></div>
-        <div className="mr-2 border-2"><Link href={"/user/register"}>Register</Link></div>
-        <div className="mr-2 border-2"><Link href={"/user/login"}>Login</Link></div>
-        <LogoutButton />
-      </div>
+      <Navbar />
       {children}
     </>
   );
