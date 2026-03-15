@@ -28,7 +28,7 @@ export default function AdminLayout({ children }: Readonly<{children: React.Reac
         <div className="mr-2 border-2"><Link href={"/admin/products"}>Product</Link></div>
         <div className="mr-2 border-2"><Link href={"/admin/products/create"}>Create Product</Link></div>
         <div className="mr-2 border-2"><Link href={"/user/register"}>Register</Link></div>
-        <div className="mr-2 border-2"><Link href={"/admin/login"}>Login</Link></div>
+        <div className="mr-2 border-2"><Link href={"/user/login"}>Login</Link></div>
         <LogoutButton />
       </div>
       {children}

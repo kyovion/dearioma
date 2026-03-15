@@ -21,9 +21,16 @@ export default function LoginPage() {
       },
       body: JSON.stringify({ email, password })
     })
-    
+    const data = await res.json()
     if(res.ok){
-      router.push("/admin")
+      if(data.role === "ADMIN")
+      {
+        router.push("/admin")
+      }
+      else
+      {
+        router.push("/user")
+      }
     }
     else{
       alert("Akun yang anda masukkan salahaaa")

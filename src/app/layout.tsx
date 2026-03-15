@@ -24,8 +24,6 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     <html lang="en">
       <body>
         <div>Headerrr</div>
-        <div className="mr-2 border-2"><Link href={"/admin/login"}>Home Admin</Link></div>
-        <div className="mr-2 border-2"><Link href={"/user/login"}>Home User</Link></div>
         {children}
         <div>Foootteeerrr</div>
       </body>

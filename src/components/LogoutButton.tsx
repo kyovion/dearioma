@@ -13,7 +13,7 @@ export default function LogoutButton() {
 
     if(res.ok){
       console.log("ok")
-      router.push("/admin/login")
+      router.push("/user/login")
       router.refresh()
     }
     else{

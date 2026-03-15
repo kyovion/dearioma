@@ -21,8 +21,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: "Invalid credentials" }, { status: 401 })
   }
 
-  // const user = {id: "1", email:"1", role:"user"}
-
   const token = signToken({
     id: result.id,
     email: result.email,
@@ -30,13 +28,14 @@ export async function POST(req: NextRequest) {
   })
 
   const res = NextResponse.json({
-    message: "Login success"
+    message: "Login success",
+    role: result.role
   })
 
   res.cookies.set("token", token, {
     httpOnly: true,
     path: "/"
   })
-  
+
   return res
 }

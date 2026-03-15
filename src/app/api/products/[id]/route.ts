@@ -1,4 +1,5 @@
 import db from "@/src/lib/db";
+import { requireAdmin } from "@/src/lib/requireAdmin";
 import { NextRequest, NextResponse } from "next/server";
 
 //old code need change to https://nextjs.org/docs/app/guides/upgrading/version-15#params--searchparams
@@ -18,6 +19,8 @@ export async function GET( req: NextRequest, context: { params: Promise<{ id: st
 
 export async function PUT( req: NextRequest, context: { params: Promise<{ id: string }> }) 
 {
+  await requireAdmin()
+  
   const { id } = await context.params
   const body = await req.json()
 
@@ -38,6 +41,7 @@ export async function PUT( req: NextRequest, context: { params: Promise<{ id: st
 
 export async function DELETE(req: NextRequest, context: { params: Promise<{ id: string }> }) 
 {
+  await requireAdmin()
   const { id } = await context.params
 
   await db.product.delete({
