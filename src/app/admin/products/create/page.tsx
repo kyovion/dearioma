@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import { useParams, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import buttonStyles from '@/src/styles/buttonStyles.module.css'
 
 export default function CreateProduct() {

@@ -1,6 +1,5 @@
 import db from "@/src/lib/db";
 import { getCurrentUser } from "@/src/lib/getCurrentUser";
-import { requireAdmin } from "@/src/lib/requireAdmin";
 import { NextRequest, NextResponse } from "next/server";
 
 //old code need change to https://nextjs.org/docs/app/guides/upgrading/version-15#params--searchparams

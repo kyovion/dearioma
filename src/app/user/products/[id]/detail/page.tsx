@@ -1,13 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useParams, useRouter } from "next/navigation"
-// import buttonStyles from '../../../../../styles/buttonStyles.module.css'
-import buttonStyles from '@/src/styles/buttonStyles.module.css'
+import { useParams } from "next/navigation"
 
 export default function EditProductPage() {
   const { id } = useParams()
-  const router = useRouter()
 
   const [name, setName] = useState("")
   const [price, setPrice] = useState(0)

@@ -14,9 +14,9 @@ export default async function Navbar() {
       <div className="mb-5 flex">
         <div className="mr-2 border-2"><Link href={"/user/"}>Home</Link></div>
         <div className="mr-2 border-2"><Link href={"/user/products"}>Product</Link></div>
-        <div className="mr-2 border-2"><Link href={"/user/register"}>Register</Link></div>
-        <div className="mr-2 border-2"><Link href={"/user/login"}>Login</Link></div>
-        <LogoutButton />
+        {!user && (<div className="mr-2 border-2"><Link href={"/user/register"}>Register</Link></div>)}
+        {!user && (<div className="mr-2 border-2"><Link href={"/user/login"}>Login</Link></div>)}
+        {user && <LogoutButton />}
       </div>
     </>
   )

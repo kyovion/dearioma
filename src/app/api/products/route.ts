@@ -1,8 +1,5 @@
-// import { verifyToken } from "@/src/lib/auth";
 import db from "@/src/lib/db";
 import { getCurrentUser } from "@/src/lib/getCurrentUser";
-import { requireAdmin } from "@/src/lib/requireAdmin";
-// import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET() {
