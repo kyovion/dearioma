@@ -64,7 +64,7 @@ export async function DELETE(req: NextRequest, context: { params: Promise<{ id: 
     )
   }
 
-  if (user.role !== "admin") {
+  if (user.role !== "ADMIN") {
     return Response.json(
       { message: "Forbidden" },
       { status: 403 }

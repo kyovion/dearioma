@@ -10,10 +10,33 @@ export default function CreateProduct() {
   const [stock, setStock] = useState(1)
   const [category, setCategory] = useState("")
   const [description, setDescription] = useState("")
-  const [image, setImage] = useState("")
+  const [file, setFile] = useState<File | null>(null)
 
   async function handleSubmit(e: any) {
+  // const handleSubmit = async (e: any) => {
     e.preventDefault()
+
+    if (!file) return
+
+    const formData = new FormData()
+    formData.append("file", file)
+
+    const resUpload = await fetch("/api/upload", {
+      method: "POST",
+      body: formData
+    })
+
+    const data = await resUpload.json()
+    
+    //need user const varible, because when use setstate is async so it always empty
+    const image = data.url
+
+    if (!image) {
+      alert("Upload gagal")
+      return
+    }
+
+    console.log(`isi image ${image}`);
     
     const res = await fetch("/api/products", {
       method: "POST",
@@ -85,12 +108,10 @@ export default function CreateProduct() {
       </div>
       <div className="text-black">
         Image:
-        <input
-          name="image"
-          value={image}
-          placeholder="Image"
-          onChange={e => setImage(e.target.value)}
-          />
+         <input
+        type="file"
+        onChange={(e) => setFile(e.target.files?.[0] || null)}
+        />
       </div>
       <button className={buttonStyles.btnCursor} type="submit">Create</button>
     </form>

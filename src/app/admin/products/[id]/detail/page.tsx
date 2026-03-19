@@ -59,7 +59,7 @@ export default function EditProductPage() {
         Description: {description}
       </div>
       <div>
-        Image: {image}
+        Image: {<img src={image} width={100} />}
       </div>
       
     </div>

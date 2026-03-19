@@ -27,7 +27,9 @@ export default function ProductList({ product }: any)
     return(
     <>
         <li key={product.id} className="mb-2 text-[#333333]">
-            {product.name +" | "+ product.price + " | " + product.stock + " | " + product.category + " | " + product.description + " | " + product.image + " | " }
+            {product.name +" | "+ product.price + " | " + product.stock + " | " + product.category + " | " + product.description + " | "}
+            {product.image && (<img src={product.image} width={100} /> ) }
+            {" | "}
             <button className={buttonStyles.btnCursor} onClick={() => handleShowDetail(product.id)}>Show Detail Product</button>
             {" | "}
             <button className={buttonStyles.btnCursor} onClick={() => handleEdit(product.id)}>Edit</button>
