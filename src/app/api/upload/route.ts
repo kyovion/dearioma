@@ -38,10 +38,17 @@ export async function POST(req: NextRequest) {
     const result: UploadApiResponse = await new Promise((resolve, reject) => {
       cloudinary.uploader
         .upload_stream({ folder: 'dearioma' }, (err, result) => {
-          if (err) {
+          if (err) 
+          {
             // console.error("CLOUDINARY ERROR:", err)
             reject(err)
-          } else {
+          } 
+          else if (!result) 
+          {
+            reject(new Error('Upload failed: result undefined'))
+          } 
+          else 
+          {
             resolve(result)
           }
         })
