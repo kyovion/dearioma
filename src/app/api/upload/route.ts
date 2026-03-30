@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server"
-import { v2 as cloudinary } from 'cloudinary'
+import { v2 as cloudinary, UploadApiResponse } from 'cloudinary'
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(bytes)
 
     // upload ke Cloudinary
-    const result = await new Promise((resolve, reject) => {
+    const result: UploadApiResponse = await new Promise((resolve, reject) => {
       cloudinary.uploader
         .upload_stream({ folder: 'dearioma' }, (err, result) => {
           if (err) {
