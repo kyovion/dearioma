@@ -59,7 +59,8 @@ export async function POST(req: NextRequest) {
       url: result.secure_url,
     })
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
+    const message = err instanceof Error ? err.message : 'An unknown error occurred'
+    return new Response(JSON.stringify({ error: message }), {
       status: 500,
     })
   }
