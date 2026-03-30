@@ -12,17 +12,23 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData()
     const file = formData.get('file')
 
-    if (!file) {
+    if (!file instanceof File) {
       return new Response(JSON.stringify({ error: 'No file uploaded' }), {
         status: 400,
       })
     }
 
     if (!file.type.startsWith('image/')) {
-    return new Response(JSON.stringify({ error: 'File harus gambar' }), {
-      status: 400 ,
-    })
-  }
+      return new Response(JSON.stringify({ error: 'File must image' }), {
+        status: 400 ,
+      })
+    }
+
+    if (file.size > 1 * 1024 * 1024) {
+      return Response.json({ error: 'File too large, max 1MB' }, { 
+        status: 400,
+       })
+    }
 
     // convert file ke buffer
     const bytes = await file.arrayBuffer()
