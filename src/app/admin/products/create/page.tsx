@@ -26,17 +26,30 @@ export default function CreateProduct() {
       body: formData
     })
 
+    
     const data = await resUpload.json()
+    console.log(resUpload)
     
     //need user const varible, because when use setstate is async so it always empty
-    const image = data.url
+    // const image = data.url
 
-    if (!image) {
-      alert("Upload gagal")
+    // if (!image) {
+    //   alert("Upload gagal")
+    //   return
+    // }
+    // console.log(`isi image ${image}`);
+
+    if (!data) {
+      alert("Upload data gagal")
       return
     }
+    if (!data.url) {
+      alert("URL gambar kosong")
+      return
+    }
+    const image = data.url
+    console.log(`${image} - ${data.url}`)
 
-    console.log(`isi image ${image}`);
     
     const res = await fetch("/api/products", {
       method: "POST",
