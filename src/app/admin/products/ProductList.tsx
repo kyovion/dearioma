@@ -17,8 +17,12 @@ export default function ProductList({ product }: any)
 
         if (!confirmDelete) return
 
+        await fetch(`/api/delete-img/${id}`, {
+            method: "DELETE"
+        })
+
         await fetch(`/api/products/${id}`, {
-        method: "DELETE"
+            method: "DELETE"
         })
 
         router.refresh()

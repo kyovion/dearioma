@@ -21,7 +21,7 @@ export default function CreateProduct() {
     const formData = new FormData()
     formData.append("file", file)
 
-    const resUpload = await fetch("/api/upload", {
+    const resUpload = await fetch("/api/upload-img", {
       method: "POST",
       body: formData
     })
@@ -48,7 +48,8 @@ export default function CreateProduct() {
       return
     }
     const image = data.url
-    console.log(`${image} - ${data.url}`)
+    const publicId = data.publicId
+    console.log(`isi pulic id ${publicId}`)
 
     
     const res = await fetch("/api/products", {
@@ -62,7 +63,8 @@ export default function CreateProduct() {
         stock,
         category,
         description,
-        image
+        image,
+        publicId
       })
     })
     

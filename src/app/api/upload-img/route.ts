@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server"
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary'
+import { getCurrentUser } from "@/src/lib/getCurrentUser";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -8,6 +9,23 @@ cloudinary.config({
 })
 
 export async function POST(req: NextRequest) {
+
+  const user = await getCurrentUser()
+
+  if (!user) {
+    return Response.json(
+      { message: "Unauthorized" },
+      { status: 401 }
+    )
+  }
+
+  if (user.role !== "ADMIN") {
+    return Response.json(
+      { message: "Forbidden" },
+      { status: 403 }
+    )
+  }
+  
   try {
     const formData = await req.formData()
     const file = formData.get('file')
@@ -57,6 +75,7 @@ export async function POST(req: NextRequest) {
 
     return Response.json({
       url: result.secure_url,
+      publicId: result.public_id
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'An unknown error occurred'

@@ -33,6 +33,7 @@ model Product {
   category    String
   description String
   image       String?
+  publicId    String?
   createdAt   DateTime @default(now())
   items       OrderItem[]
 }
