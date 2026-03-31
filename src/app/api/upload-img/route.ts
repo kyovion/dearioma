@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       { status: 403 }
     )
   }
-  
+
   try {
     const formData = await req.formData()
     const file = formData.get('file')
@@ -53,9 +53,10 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(bytes)
 
     // upload ke Cloudinary
+    const folder = process.env.CLOUDINARY_FOLDER
     const result: UploadApiResponse = await new Promise((resolve, reject) => {
       cloudinary.uploader
-        .upload_stream({ folder: 'dearioma' }, (err, result) => {
+        .upload_stream({ folder: folder }, (err, result) => {
           if (err) 
           {
             // console.error("CLOUDINARY ERROR:", err)

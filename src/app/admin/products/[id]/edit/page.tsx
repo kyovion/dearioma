@@ -15,6 +15,8 @@ export default function EditProductPage() {
   const [category, setCategory] = useState("")
   const [description, setDescription] = useState("")
   const [image, setImage] = useState("")
+  const [publicId, setPublicId] = useState("")
+  const [file, setFile] = useState<File | null>(null)
 
   const [loading, setLoading] = useState(true)
 
@@ -30,8 +32,8 @@ export default function EditProductPage() {
         setCategory(data.category || "")
         setDescription(data.description || "")
         setImage(data.image || "")
-
-      setLoading(false)
+        setPublicId(data.publicId || "")
+        setLoading(false)
     }
 
     if (id) fetchProduct()
@@ -40,6 +42,41 @@ export default function EditProductPage() {
   // ⭐ handler submit update
   const handleSubmit = async (e: any) => {
     e.preventDefault()
+
+    const oldImage = image
+    const oldpublicId = publicId
+    let tempNewImage
+    let tempNewPublicId
+    if (file)
+    {
+      const formData = new FormData()
+      formData.append("file", file)
+      
+      const resUpload = await fetch("/api/upload-img", {
+        method: "POST",
+        body: formData
+      })
+      
+      const data = await resUpload.json()
+      console.log(resUpload)
+      
+      if (!data) {
+        alert("Upload data gagal")
+        return
+      }
+      if (!data.url) {
+        alert("URL gambar kosong")
+        return
+      }
+      tempNewImage = data.url
+      tempNewPublicId = data.publicId
+    }
+    const newImage = tempNewImage?tempNewImage:oldImage
+    const newPublicId = tempNewPublicId?tempNewPublicId:oldpublicId
+
+    await fetch(`/api/delete-img/${id}`, {
+      method: "DELETE"
+    })
 
     await fetch(`/api/products/${id}`, {
       method: "PUT",
@@ -50,7 +87,8 @@ export default function EditProductPage() {
         stock,
         category,
         description,
-        image
+        image: newImage,
+        publicId: newPublicId
       })
     })
 
@@ -112,13 +150,15 @@ export default function EditProductPage() {
           />
       </div>
       <div className="text-black">
-        Image:
-        <input
-          name="image"
-          value={image}
-          placeholder="Image"
-          onChange={e => setImage(e.target.value)}
-          />
+        Change Image:
+         <input
+        type="file"
+        onChange={(e) => setFile(e.target.files?.[0] || null)}
+        />
+      </div>
+      <div>
+        Current Image:
+        {image && (<img src={image} width={100} /> ) }
       </div>
       <button className={buttonStyles.btnCursor} type="submit">Update</button>
     </form>
