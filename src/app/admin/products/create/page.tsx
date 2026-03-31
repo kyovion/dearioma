@@ -11,6 +11,7 @@ export default function CreateProduct() {
   const [category, setCategory] = useState("")
   const [description, setDescription] = useState("")
   const [file, setFile] = useState<File | null>(null)
+  const [preview, setPreview] = useState<string | null>(null)
 
   async function handleSubmit(e: any) {
   // const handleSubmit = async (e: any) => {
@@ -49,7 +50,6 @@ export default function CreateProduct() {
     }
     const image = data.url
     const publicId = data.publicId
-    console.log(`isi pulic id ${publicId}`)
 
     
     const res = await fetch("/api/products", {
@@ -124,9 +124,27 @@ export default function CreateProduct() {
       <div className="text-black">
         Image:
          <input
-        type="file"
-        onChange={(e) => setFile(e.target.files?.[0] || null)}
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            const selectedFile = e.target.files?.[0] || null
+            if (selectedFile && selectedFile.size > 1 * 1024 * 1024) {
+              alert('File too large (max 1MB)')
+              return
+            }
+            setFile(selectedFile)
+            if (selectedFile) {
+              setPreview(URL.createObjectURL(selectedFile))
+            }
+          }}
         />
+        {preview && (
+          <img
+            src={preview}
+            alt="Preview"
+            style={{ width: 200, marginTop: 10 }}
+          />
+        )}
       </div>
       <button className={buttonStyles.btnCursor} type="submit">Create</button>
     </form>

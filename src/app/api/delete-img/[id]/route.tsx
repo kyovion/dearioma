@@ -30,7 +30,6 @@ export async function DELETE(req: NextRequest, context: { params: Promise<{ id: 
   try {
 
     const { id } = await context.params
-    console.log(`isi publicId ${id}`)
 
     const product = await db.product.findUnique({
       //old code
@@ -39,7 +38,6 @@ export async function DELETE(req: NextRequest, context: { params: Promise<{ id: 
     })
     
     const publicId = product?.publicId
-    console.log(`isi publicId ${publicId}`)
     if (!publicId) {
       return new Response(
         JSON.stringify({ error: 'publicId empty' }),

@@ -17,6 +17,7 @@ export default function EditProductPage() {
   const [image, setImage] = useState("")
   const [publicId, setPublicId] = useState("")
   const [file, setFile] = useState<File | null>(null)
+  const [preview, setPreview] = useState<string | null>(null)
 
   const [loading, setLoading] = useState(true)
 
@@ -150,11 +151,30 @@ export default function EditProductPage() {
           />
       </div>
       <div className="text-black">
-        Change Image:
-         <input
-        type="file"
-        onChange={(e) => setFile(e.target.files?.[0] || null)}
+        Change New Image:
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            const selectedFile = e.target.files?.[0] || null
+            if (selectedFile && selectedFile.size > 1 * 1024 * 1024) {
+              alert('File too large (max 1MB)')
+              return
+            }
+            setFile(selectedFile)
+
+            if (selectedFile) {
+              setPreview(URL.createObjectURL(selectedFile))
+            }
+          }}
         />
+        {preview && (
+          <img
+            src={preview}
+            alt="Preview"
+            style={{ width: 200, marginTop: 10 }}
+          />
+        )}
       </div>
       <div>
         Current Image:
