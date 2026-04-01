@@ -6,7 +6,8 @@ export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl
 
   // izinkan akses halaman login
-  if (pathname.startsWith("/admin/login") ||
+  if (
+    // pathname.startsWith("/admin/login") ||
     pathname.startsWith("/user/login") ||
     pathname.startsWith("/user/register")) {
     return NextResponse.next()

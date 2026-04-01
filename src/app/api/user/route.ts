@@ -17,7 +17,7 @@ export async function POST(req: NextRequest)
             email: body.email,
             password: body.password,
             address: body.address,
-            phonenumber: body.phonenumber,
+            phoneNumber: body.phonenumber,
             // role: "ADMIN"
             }
         })

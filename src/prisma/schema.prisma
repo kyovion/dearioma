@@ -13,16 +13,37 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  SHIPPED
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
 model User {
   id          String   @id @default(cuid())
   email       String   @unique
   username    String
   password    String
   address     String
-  phonenumber String
-  role        String   @default("USER")
+  phoneNumber String
+  role        Role     @default(USER)
   createdAt   DateTime @default(now())
+  products    Product[]
   orders      Order[]
+  cart        Cart?
 }
 
 model Product {
@@ -35,24 +56,82 @@ model Product {
   image       String?
   publicId    String?
   createdAt   DateTime @default(now())
-  items       OrderItem[]
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  orderItems  OrderItem[]
+  cartItems   CartItem[]
 }
 
-model Order {
-  id        String   @id @default(cuid())
-  userId    String
-  total     Int
-  status    String   @default("PENDING")
-  user      User     @relation(fields: [userId], references: [id])
-  items     OrderItem[]
+// =======================
+// CART
+// =======================
+
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+
+  createdAt DateTime   @default(now())
+
+  user      User       @relation(fields: [userId], references: [id])
+  items     CartItem[]
 }
 
-model OrderItem {
+model CartItem {
   id        String   @id @default(cuid())
-  orderId   String
+  cartId    String
   productId String
   quantity  Int
-  price     Int
-  order     Order   @relation(fields: [orderId], references: [id])
-  product   Product @relation(fields: [productId], references: [id])
+
+  cart      Cart     @relation(fields: [cartId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
+
+  @@unique([cartId, productId]) // prevent duplicate items
+}
+
+// =======================
+// ORDER
+// =======================
+
+model Order {
+  id             String         @id @default(cuid())
+  userId         String
+
+  // SNAPSHOT USER DATA
+  email          String
+  address        String
+  phoneNumber    String
+
+  total          Int
+  shippingCost   Int
+
+  status         OrderStatus    @default(PENDING)
+
+  // PAYMENT
+  paymentMethod  String
+  paymentStatus  PaymentStatus  @default(PENDING)
+  paymentRef     String?        // dari payment gateway (Midtrans/Stripe)
+
+  createdAt      DateTime       @default(now())
+
+  user           User           @relation(fields: [userId], references: [id])
+  items          OrderItem[]
+}
+
+
+// =======================
+// ORDER ITEM
+// =======================
+
+model OrderItem {
+  id          String   @id @default(cuid())
+  orderId     String
+  productId   String
+
+  // SNAPSHOT PRODUCT DATA
+  name        String
+  price       Int
+  quantity    Int
+
+  order       Order   @relation(fields: [orderId], references: [id])
+  product     Product @relation(fields: [productId], references: [id])
 }

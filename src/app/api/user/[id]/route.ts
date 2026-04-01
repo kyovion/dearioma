@@ -28,7 +28,7 @@ export async function PUT( req: NextRequest, context: { params: Promise<{ id: st
       email: body.email,
       password: body.password,
       address: body.address,
-      phonenumber: body.phonenumber,
+      phoneNumber: body.phonenumber,
     }
   })
 
