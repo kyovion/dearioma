@@ -37,7 +37,8 @@ export async function POST(req: NextRequest)
             description: body.description,
             stock: body.stock,
             image: body.image,
-            publicId: body.publicId
+            publicId: body.publicId,
+            userId: user.id
             }
         })
 
