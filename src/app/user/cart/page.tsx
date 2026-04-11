@@ -1,20 +1,24 @@
 "use client"
 
 import { useCart } from "@/src/hooks/useCart"
+import CartItemControls from "@/src/components/cart/CartItemControls"
 
 export default function CartPage() {
-  const { data: cart, isLoading } = useCart()
-
-  if (isLoading) return <p>Loading...</p>
+  const { data: cart } = useCart()
 
   return (
     <div>
-        My Cart    
-        {cart?.items?.map((item: any) => (
+      {cart?.items?.map((item: any) => (
         <div key={item.id}>
-            {item.product.name} | {item.quantity}
+          <p>Nama Barang = {item.product.name}</p>
+
+          <CartItemControls
+            productId={item.productId}
+            quantity={item.quantity}
+            stock={item.product.stock} // 🔥 ini penting
+          />
         </div>
-        ))}
+      ))}
     </div>
   )
 }

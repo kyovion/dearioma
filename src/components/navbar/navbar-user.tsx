@@ -1,5 +1,5 @@
 import LogoutButton from "@/src/components/LogoutButton"
-import CartCount from "@/src/components/navbar-user-client"
+import CartCount from "@/src/components/navbar/navbar-user-client"
 import { getCurrentUser } from "@/src/lib/getCurrentUser"
 import Link from "next/link"
 

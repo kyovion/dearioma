@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation"
 import buttonStyles from '@/src/styles/buttonStyles.module.css'
-import AddToCartButton from "@/src/components/AddToCartButton"
+import AddToCartButton from "@/src/components/cart/AddToCartButton"
 
 export default function ProductList({ product }: any)
 {

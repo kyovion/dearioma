@@ -14,8 +14,11 @@ export async function GET() {
       where: { userId: user.id },
       include: {
         items: {
+          orderBy: {
+            createdAt: "asc", // 🔥 penting
+          },
           include: {
-            product: true
+            product: true,
           }
         }
       }
