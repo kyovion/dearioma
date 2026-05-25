@@ -69,7 +69,7 @@ export default function CreateUser() {
           onChange={e => setPhonenumber(e.target.value)}
           />
       </div>
-      <button className={buttonStyles.btnCursor} type="submit">Register</button>
+      <button className="mr-2 border-2 cursor-pointer rounded bg-green-400" type="submit">Register</button>
     </form>
     </div>
   )

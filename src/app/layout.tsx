@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ReactQueryProvider from "@/src/lib/react-query-provider"
 import { Toaster } from "react-hot-toast"
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{children: React.ReactNode;}>) 
 {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <body>
         <div>Headerrr</div>
         <ReactQueryProvider>

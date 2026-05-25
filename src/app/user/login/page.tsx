@@ -63,7 +63,7 @@ export default function LoginPage() {
         />
       </div>
       <div>
-        <button className={buttonStyles.btnCursor} type="submit">
+        <button className="mr-2 border-2 cursor-pointer rounded bg-green-400" type="submit">
           Login
         </button>
       </div>

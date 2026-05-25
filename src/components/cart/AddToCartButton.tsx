@@ -14,7 +14,7 @@ export default function AddToCartButton({ productId }: { productId: string }) {
   }
 
   return (
-    <button className={buttonStyles.btnCursor} onClick={handleAdd} disabled={isPending}>
+    <button className="mr-2 border-2 cursor-pointer rounded bg-yellow-400" onClick={handleAdd} disabled={isPending}>
       {isPending ? "Adding..." : "Add to Cart"}
     </button>
   )

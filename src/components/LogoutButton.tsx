@@ -24,7 +24,7 @@ export default function LogoutButton() {
   }
 
   return (
-    <button className={buttonStyles.btnCursor} onClick={handleLogout}>
+    <button className="mr-2 border-2 cursor-pointer rounded bg-red-600" onClick={handleLogout}>
       Logout
     </button>
   )

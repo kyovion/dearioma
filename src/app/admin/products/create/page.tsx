@@ -146,7 +146,7 @@ export default function CreateProduct() {
           />
         )}
       </div>
-      <button className={buttonStyles.btnCursor} type="submit">Create</button>
+      <button className="mr-2 border-2 cursor-pointer rounded bg-green-400" type="submit">Create</button>
     </form>
     </div>
   )

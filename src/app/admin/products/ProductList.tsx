@@ -34,11 +34,11 @@ export default function ProductList({ product }: any)
             {product.name +" | "+ product.price + " | " + product.stock + " | " + product.category + " | " + product.description + " | "}
             {product.image && (<img src={product.image} width={100} /> ) }
             {" | "}
-            <button className={buttonStyles.btnCursor} onClick={() => handleShowDetail(product.id)}>Show Detail Product</button>
+            <button className="mr-2 border-2 cursor-pointer rounded bg-yellow-400" onClick={() => handleShowDetail(product.id)}>Show Detail Product</button>
             {" | "}
-            <button className={buttonStyles.btnCursor} onClick={() => handleEdit(product.id)}>Edit</button>
+            <button className="mr-2 border-2 cursor-pointer rounded bg-yellow-400" onClick={() => handleEdit(product.id)}>Edit</button>
             {" | "}
-            <button className={buttonStyles.btnCursor} onClick={() => handleDelete(product.id)}>Delete</button>
+            <button className="mr-2 border-2 cursor-pointer rounded bg-yellow-400" onClick={() => handleDelete(product.id)}>Delete</button>
         </li>
     </>
     )

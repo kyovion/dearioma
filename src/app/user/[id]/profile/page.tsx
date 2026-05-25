@@ -67,11 +67,11 @@ export default function UserProfilePage() {
         <div>
           Phone Number : {phonenumber}
         </div>
-        <div className="w-1/8 border-2">
-          <button className={buttonStyles.btnCursor} onClick={() => handleUpdate()}>Update Profile</button>
+        <div >
+          <button className="mr-2 border-2 cursor-pointer rounded bg-green-400" onClick={() => handleUpdate()}>Update Profile</button>
         </div>
-        <div className="w-1/8 border-2">
-          <button className={buttonStyles.btnCursor} onClick={() => handleDelete()}>Delete Profile</button>
+        <div >
+          <button className="mr-2 border-2 cursor-pointer rounded bg-red-400" onClick={() => handleDelete()}>Delete Profile</button>
         </div>
       </div>
 

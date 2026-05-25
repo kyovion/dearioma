@@ -15,7 +15,7 @@ export default function ProductList({ product }: any)
     <>
         <li key={product.id} className="mb-2 text-[#333333]">
             {product.name +" | "+ product.price + " | " + product.stock + " | " + product.category + " | " + product.description + " | " + product.image + " | " }
-            <button className={buttonStyles.btnCursor} onClick={() => handleShowDetail(product.id)}>Show Detail Product</button>
+            <button className="mr-2 border-2 cursor-pointer rounded bg-yellow-400" onClick={() => handleShowDetail(product.id)}>Show Detail Product</button>
             { " | "}
             <AddToCartButton productId={product.id}/>
         </li>

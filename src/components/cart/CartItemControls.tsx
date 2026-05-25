@@ -26,7 +26,7 @@ export default function CartItemControls({
     <div style={{ display: "flex", gap: "8px" }}>
       Jumlah = 
       {/* ➖ */}
-      <button className={buttonStyles.btnCursor}
+      <button className="mr-2 border-2 cursor-pointer rounded bg-green-400"
         disabled={isMin || updateCart.isPending}
         onClick={() =>
           updateCart.mutate({
@@ -41,7 +41,7 @@ export default function CartItemControls({
       <span>{quantity}</span>
 
       {/* ➕ */}
-      <button className={buttonStyles.btnCursor}
+      <button className="mr-2 border-2 cursor-pointer rounded bg-green-400"
         disabled={isMax || updateCart.isPending}
         onClick={() =>
           updateCart.mutate({
@@ -54,7 +54,7 @@ export default function CartItemControls({
       </button>
 
       {/* ❌ */}
-      <button className={buttonStyles.btnCursor}
+      <button className="mr-2 border-2 cursor-pointer rounded bg-red-400"
         disabled={removeItem.isPending}
         onClick={() =>
           removeItem.mutate({ productId })

@@ -180,7 +180,7 @@ export default function EditProductPage() {
         Current Image:
         {image && (<img src={image} width={100} /> ) }
       </div>
-      <button className={buttonStyles.btnCursor} type="submit">Update</button>
+      <button className="mr-2 border-2 cursor-pointer rounded bg-green-400" type="submit">Update</button>
     </form>
     </div>
   )
